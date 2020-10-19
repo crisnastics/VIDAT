@@ -1,40 +1,116 @@
-#  FRONTEND VIDAT 
-## About
+#  Vidat backend
 
-Se considera en esta rama la implementación de la interfaz para el demandante del proyecto vidat. Para este proyecto de memoria se busca crear un puente entre un oferente de servicio con un adulto mayor. A grandes razgos, la aplicación permite a un usuario demandante registrado, solicitar un servicio, según un perfil y horarios disponibles de un profesional de la salud certificado. Junto a ello permite comunicación directa entre las dos partes.
+## Requirements
+- MariaDB
+- MongoDB
+- NodeJS
+- Nodemon
+- NodeJS Package Manager (NPM)
+- Curl
 
-## Config
- 
-Primero clone el repositorio. Como aún no se tiene conectado el backend con el frontend, se configuró primero una API local y una base de datos. El modelo se encuentra en \Rest-API-msyql\db\mydb. Debe levantar el servicio de mysql (xampp por ejemplo) y copiar el .sql para crear la bd local.
-
-Ahora debe levartar la API. Primero situarse en la carpeta, en su directorio local, e instalar las dependencias con algun gestor de paquetes (npm o yarn)
-
-```bash
-    cd ..\Rest-API-msyql
+## Directory structure
+Each subdirectory is an API module
+```
+└── vidat_backend
+    ├── relational_database
+    ├── documentary_database
+    ├── user_manager
+    ├── service_manager
+    ├── communication_manager
+    ├── pay&evaluate_manager
+    └── README.md
 ```
 
-```bash
-    npm install 
+## Modules
+### Relational database
+#### MariaDB configuration
+Enter as admin user to MariaDB console. Type on bash console
 ```
-Una vez terminado puede levantar la API.
-
-```bash
-    npm start
+mariadb -u admin -p
 ```
-
-Deberá aparecer por consola "bd connected". Ahora, debe descargar la aplicación "Expo", que le permitirá en un dispositivo móvil, o en una máquina virtual con iOS o Android,  correr el proyecto. El proyecto tiene varias dependencias que necesitará instalar, como Expo, React-native, React, entre muchas otras. Para ello situarse en el proyecto e instalar
-
-```bash
-    cd ..\myNewProject
+Create an user. Type on MariaDB console
 ```
-
-```bash
-    npm install
+CREATE USER 'vidat'@'localhost' IDENTIFIED BY 'password';
 ```
-
-Cuando haya finalizado la descarga, deberá entrar al proyecto y en el archivo config.json, colocar su ip con la que sale a internet. Sino no podrá hacer fetch con la api que esta corriendo local. Ahora esta listo para levantar el prototipo.
-
-```bash
-    expo start
+Create a database. Type on MariaDB console
 ```
-En su dispositivo móvil, si tiene iOS escanear el QR que le aparecerá en la consola o en el localhost que se abrió automaticamente. De tener Andorid ingresar a la aplicación expo descargada previamente conectadas a la misma red (si desea puede configurar sus credenciales).
+CREATE DATABASE vidat_relational_db;
+```
+Grant privileges
+```
+GRANT ALL PRIVILEGES ON vidat_relational_db.* TO 'vidat'@'localhost';
+```
+To show tables from a database, first select it. Type on MariaDB console
+```
+USE vidat_relational_db;
+SHOW TABLES;
+```
+#### Initial setup
+Install needed packages. Type on bash console
+```
+sudo npm install --save
+```
+Start application. Type on bash console
+```
+nodemon app.js
+```
+Basic testing. Type on bash console
+```
+curl localhost:8080
+```
+```
+{"message":"VIDAT BACKEND - RELATIONAL DATABASE"}
+```
+### Documentary database
+
+#### MongoDB configuration
+
+[Here is the official installation guide](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+To enter mongo CLI. Type con bash console
+```
+mongod
+```
+To switch database. Type on mongod console
+```
+use vidat_documentary_db
+```
+Create a user and grant roles
+```
+db.createUser({user:'vidat',pwd:'password',roles:['readWrite', 'dbAdmin']})
+```
+Create a collection
+```
+db.createCollection('<collection_name>')
+```
+#### Initial setup
+Install needed packages. Type on bash console
+```
+sudo npm install --save
+```
+Start application. Type on bash console
+```
+nodemon app.js
+```
+Basic testing. Type on bash console
+```
+curl localhost:8080
+```
+```
+{"message":"VIDAT BACKEND - DOCUMENTARY DATABASE"}
+```
+### User manager
+
+To do
+
+### Service manager
+
+To do
+
+### Communication manager
+
+To do
+
+### Pay & Evaluate manager
+
+To do
