@@ -3,7 +3,7 @@
 
 Se considera en esta rama la implementación de la interfaz para el demandante del proyecto vidat. Para este proyecto de memoria se busca crear un puente entre un oferente de servicio con un adulto mayor. A grandes razgos, la aplicación permite a un usuario demandante registrado, solicitar un servicio, según un perfil y horarios disponibles de un profesional de la salud certificado. Junto a ello permite comunicación directa entre las dos partes.
 
-##Requirements
+## Requirements
 
 - Nodejs
 - Expo
