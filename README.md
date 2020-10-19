@@ -3,6 +3,8 @@
 
 Se considera en esta rama la implementación de la interfaz para el demandante del proyecto vidat. Para este proyecto de memoria se busca crear un puente entre un oferente de servicio con un adulto mayor. A grandes razgos, la aplicación permite a un usuario demandante registrado, solicitar un servicio, según un perfil y horarios disponibles de un profesional de la salud certificado. Junto a ello permite comunicación directa entre las dos partes.
 
+##Requirements
+
 ## Config
  
 Primero clone el repositorio. Como aún no se tiene conectado el backend con el frontend, se configuró primero una API local y una base de datos. El modelo se encuentra en \Rest-API-msyql\db\mydb. Debe levantar el servicio de mysql (xampp por ejemplo) y copiar el .sql para crear la bd local.
